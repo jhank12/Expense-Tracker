@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1e1e1e;
+  color: #dedede;
+  font-family: "Segoe UI", sans-serif;
+  height: 100vh;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  background-color: #2f2f2f;
+
+  border: none;
+  border-radius: 15px;
+  color: #c2c2c2;
+  font: inherit;
+  font-size: 1.1rem;
+  height: 55px;
+  padding-left: 0.8rem;
+}
+
+select {
+  background-color: #2f2f2f;
+
+  border: none;
+  border-radius: 15px;
+  color: #c2c2c2;
+  font: inherit;
+  font-size: 1.1rem;
+  height: 55px;
+  padding: 0 0.8rem;
+  width: 100%;
+}
+
+button {
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btnMain {
+  background-color: #5e39c5;
+  color: #dedede;
+  border-radius: 10px;
+  font-weight: 500;
+  height: 55px;
+  width: 100%;
+}
+
+/* main gray: #1e1e1e */
+/* secondary gray: #272727 */
+/* accent: purple */
+/* font main: #dedede */
+/* other fonts: #c2c2c2 #7c7c7c #a1a1a1  #cccccc */
+
+/* basic classes */
+
+.flex-row {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContainer {
+  align-items: flex-start;
+  background-color: #272727;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1.65rem;
+  max-width: 600px;
+  width: 40%;
+}
+
+form {
+  width: 100%;
+}
+
+.expenseFormContainer {
+  position: absolute;
+  /* top: 50%; */
+}
+
+.newExpenseForm {
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* form start */
+
+.inputLabelWrap {
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.inputLabelWrap label {
+  color: #a1a1a1;
+  font-size: 1.1rem;
+}
+
+.inputLabelWrap input {
+  width: 100%;
+}
+
+.btnsContainer {
+  margin-top: 40px;
+}

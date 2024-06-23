@@ -1,0 +1,79 @@
+.expensesContainer {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.expenseItem {
+  align-items: center;
+  background-color: #272727;
+  /* border: 0.75px solid #3b3b3b; */
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.75rem;
+  width: 100%;
+}
+
+.expenseItem:hover {
+  cursor: pointer;
+  /* scale: 1.003; */
+}
+
+.expensenNameCategory {
+}
+
+.expenseName {
+  color: #c2c2c2;
+
+  font-weight: 500;
+  font-size: 1.2rem;
+  font-size: 1.25rem;
+}
+
+.expenseCategory {
+  color: #7c7c7c;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.expenseAmount {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.expenseRightSide {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.expenseRightSide span {
+  color: #686868;
+  font-size: 2rem;
+}
+
+.expenseRightSide span:hover {
+  color: #7c7c7c;
+}
+
+.expenseAmountAdd {
+  color: rgb(0, 235, 20);
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.expenseAmountDeduct {
+  color: rgb(255, 68, 68);
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.newExpenseBtnContainer {
+  align-self: flex-end;
+}
+
+.newExpenseBtnContainer button {
+  padding: 1rem 1.25rem;
+}

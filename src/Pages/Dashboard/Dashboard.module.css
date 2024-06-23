@@ -1,0 +1,13 @@
+.dashboardContainer {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  /* height: 100vh; */
+  gap: 1.25rem;
+
+  position: relative;
+  max-height: 100vh;
+}
+
+/* section is grid cell */
