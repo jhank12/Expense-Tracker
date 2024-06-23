@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const AddExpenseForm = ({ addExpense }) => {
+const AddExpenseForm = ({ addExpense, setExpenseFormOpen }) => {
   const [expenseName, setExpenseName] = useState("");
   const [category, setCategory] = useState("subscription");
   const [amount, setAmount] = useState(0.0);

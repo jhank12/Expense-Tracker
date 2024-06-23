@@ -1,4 +1,4 @@
-import React, { useState, useId } from "react";
+import React, { useState, useRef, useId } from "react";
 
 import DashboardSection from "../Reusable/DashboardSection/DashboardSection";
 import styles from "./ExpensesSection.module.css";
@@ -49,15 +49,20 @@ const ExpensesSection = () => {
     },
   ]);
 
+  const addExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
+  const editExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
+  const deleteExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
+
   function addExpense(expense: Expense) {
     setExpenses((prev) => [...prev, expense]);
 
-    setExpenseFormOpen(false);
+    addExpenseDialogRef.current?.close();
   }
 
-  function editExpense(expenseId: string) {
-    // set name on click, in future have modal
+  // expense option selection opens the corresponding dialog box.
+  // on click open dialog ref and pass in the edit or delete expense function to the modal
 
+  function editExpense(expenseId: string, updatedExpense: Expense, dialogRef) {
     const expensesCopy = expenses;
 
     let expenseIdx: number;
@@ -68,20 +73,23 @@ const ExpensesSection = () => {
       }
     });
 
-    const expense: Expense = expensesCopy[expenseIdx];
+    // const expense: Expense = expensesCopy[expenseIdx];
 
-    expense.expenseName = "New name";
-    console.log(expensesCopy);
+    // expense.expenseName = "New name";
+    expensesCopy[expenseIdx] = updatedExpense;
 
-    setExpenses(expensesCopy);
+    setExpenses([...expensesCopy]);
+    dialogRef.current?.close();
   }
 
-  function deleteExpense(expenseId: string) {
+  function deleteExpense(expenseId: string, dialogRef) {
     const filteredExpenses = expenses.filter((expense) => {
       return expense.id !== expenseId;
     });
 
-    setExpenses(filteredExpenses);
+    setExpenses([...filteredExpenses]);
+
+    dialogRef.current?.close();
   }
 
   return (
@@ -95,15 +103,49 @@ const ExpensesSection = () => {
               expense={expense}
               editExpense={editExpense}
               deleteExpense={deleteExpense}
+              editDialogRef={editExpenseDialogRef}
+              deleteDialogRef={deleteExpenseDialogRef}
             />
           );
         })}
       </div>
 
-      {expenseFormOpen && <AddExpenseForm addExpense={addExpense} />}
+      {/* add expense */}
+      <dialog className="dialog" ref={addExpenseDialogRef}>
+        <AddExpenseForm
+          addExpense={addExpense}
+          setExpenseFormOpen={setExpenseFormOpen}
+        />
+      </dialog>
+
+      {/* edit expense dialog */}
+
+      <dialog ref={editExpenseDialogRef}></dialog>
+
+      {/* delete expense dialog */}
+
+      {/* <dialog className="dialog" ref={deleteExpenseDialogRef}>
+        <div className="modalContainer">
+          <h2>Delete Expense</h2>
+
+          <p>This action is permanent and cannot be undone.</p>
+
+          <div>
+            <button className="btnMain" onClick={() => deleteExpense()}>
+              Delete Expense
+            </button>
+            <button onClick={() => closeDialog(deleteExpenseDialogRef)}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      </dialog> */}
 
       <div className={styles.newExpenseBtnContainer}>
-        <button className="btnMain" onClick={() => setExpenseFormOpen(true)}>
+        <button
+          className="btnMain"
+          onClick={() => addExpenseDialogRef.current?.showModal()}
+        >
           Add Expense
         </button>
       </div>

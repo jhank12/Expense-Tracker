@@ -65,35 +65,3 @@
   font-weight: 500;
   font-size: 1.25rem;
 }
-
-.expenseOptions {
-  background-color: #313131;
-  border-radius: 15px;
-  /* padding: 0.5rem; */
-  position: absolute;
-  right: -180px;
-  width: 175px;
-}
-
-.expenseOption {
-  align-items: center;
-  border-radius: 10px;
-  color: #8f8f8f;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 400;
-  padding: 1rem 1.1rem;
-}
-
-.expenseOption:first-of-type {
-  border-radius: 15px 15px 0 0;
-}
-
-.expenseOption:last-of-type {
-  border-radius: 0 0 15px 15px;
-}
-
-.expenseOption:hover {
-  background-color: #373737;
-  color: #a1a1a1;
-}

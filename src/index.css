@@ -50,6 +50,17 @@ button {
   cursor: pointer;
 }
 
+.dialog {
+  background-color: #272727;
+  border: none;
+  border-radius: 15px;
+  color: inherit !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .btnMain {
   background-color: #5e39c5;
   color: #dedede;
@@ -57,6 +68,10 @@ button {
   font-weight: 500;
   height: 55px;
   width: 100%;
+}
+
+.btnMain:hover {
+  background-color: #633ccf;
 }
 
 /* main gray: #1e1e1e */
@@ -85,7 +100,8 @@ button {
   justify-content: space-between;
   padding: 1.5rem 1.65rem;
   max-width: 600px;
-  width: 40%;
+  /* width: 40%; */
+  width: 100%;
 }
 
 form {
@@ -93,8 +109,11 @@ form {
 }
 
 .expenseFormContainer {
-  position: absolute;
-  /* top: 50%; */
+  min-width: 450px;
+}
+
+.expenseFormContainer h2 {
+  color: #dedede;
 }
 
 .newExpenseForm {
@@ -120,4 +139,17 @@ form {
 
 .btnsContainer {
   margin-top: 40px;
+  text-align: center;
+}
+
+.btnsContainer button[type="reset"] {
+  background-color: transparent;
+  color: #7c7c7c;
+  font-weight: 400;
+  margin-top: 15px;
+  padding: 0.2rem;
+}
+
+.btnsContainer button[type="reset"]:hover {
+  color: #a1a1a1;
 }

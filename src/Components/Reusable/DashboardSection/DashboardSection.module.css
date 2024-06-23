@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 1.65rem 1.5rem;
+  position: relative;
   gap: 2rem;
   width: 100%;
   height: 100%;
