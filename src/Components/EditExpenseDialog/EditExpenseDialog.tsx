@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
+// components
+import Dialog from "../Reusable/Dialog/Dialog";
+
 const EditExpenseDialog = ({
   expense,
   editExpense,
@@ -39,23 +42,8 @@ const EditExpenseDialog = ({
     //  editExpenseDialogRef.current?.close();
   }
 
-  function addDialogEventListener() {}
-
-  useEffect(() => {
-    editExpenseDialogRef.current?.addEventListener("click", function (e) {
-      if (e.target.className === "dialog") closeDialog(editExpenseDialogRef);
-    });
-
-    return () => {
-      editExpenseDialogRef.current?.removeEventListener(
-        "click",
-        function (e) {}
-      );
-    };
-  }, []);
-
   return (
-    <dialog className="dialog" ref={editExpenseDialogRef}>
+    <Dialog dialogRef={editExpenseDialogRef}>
       <div className="modalContainer">
         <h2>Edit Expense</h2>
 
@@ -116,7 +104,7 @@ const EditExpenseDialog = ({
           </div>
         </form>
       </div>
-    </dialog>
+    </Dialog>
   );
 };
 

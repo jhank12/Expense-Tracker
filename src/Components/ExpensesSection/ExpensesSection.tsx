@@ -84,19 +84,6 @@ const ExpensesSection = () => {
     dialogRef.current?.close();
   }
 
-  useEffect(() => {
-    addExpenseDialogRef.current?.addEventListener("click", function (e) {
-      if (e.target.className === "dialog") addExpenseDialogRef.current?.close();
-    });
-
-    return () => {
-      addExpenseDialogRef.current?.removeEventListener(
-        "click",
-        function (e) {}
-      );
-    };
-  }, []);
-
   return (
     <DashboardSection>
       <h2>Today's Expenses</h2>
@@ -113,13 +100,11 @@ const ExpensesSection = () => {
         })}
       </div>
 
-      {/* add expense */}
-      <dialog className="dialog" ref={addExpenseDialogRef}>
-        <AddExpenseForm
-          addExpense={addExpense}
-          setExpenseFormOpen={setExpenseFormOpen}
-        />
-      </dialog>
+      <AddExpenseForm
+        addExpense={addExpense}
+        dialogRef={addExpenseDialogRef}
+        setExpenseFormOpen={setExpenseFormOpen}
+      />
 
       <div className={styles.newExpenseBtnContainer}>
         <button

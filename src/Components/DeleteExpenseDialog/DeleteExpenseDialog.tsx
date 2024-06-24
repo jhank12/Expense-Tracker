@@ -1,26 +1,29 @@
 import React, { useEffect } from "react";
 
+// components
+import Dialog from "../Reusable/Dialog/Dialog";
+
 const DeleteExpenseDialog = ({
   expense,
   deleteExpense,
   deleteExpenseDialogRef,
   closeDialog,
 }) => {
-  useEffect(() => {
-    deleteExpenseDialogRef.current?.addEventListener("click", function (e) {
-      if (e.target.className === "dialog") closeDialog(deleteExpenseDialogRef);
-    });
+  //   useEffect(() => {
+  //     deleteExpenseDialogRef.current?.addEventListener("click", function (e) {
+  //       if (e.target.className === "dialog") closeDialog(deleteExpenseDialogRef);
+  //     });
 
-    return () => {
-      deleteExpenseDialogRef.current?.removeEventListener(
-        "click",
-        function (e) {}
-      );
-    };
-  }, []);
+  //     return () => {
+  //       deleteExpenseDialogRef.current?.removeEventListener(
+  //         "click",
+  //         function (e) {}
+  //       );
+  //     };
+  //   }, []);
 
   return (
-    <dialog className="dialog" ref={deleteExpenseDialogRef}>
+    <Dialog dialogRef={deleteExpenseDialogRef}>
       <div className="modalContainer deleteExpenseDialog">
         <h2>Delete Expense</h2>
 
@@ -39,7 +42,7 @@ const DeleteExpenseDialog = ({
           </button>
         </div>
       </div>
-    </dialog>
+    </Dialog>
   );
 };
 

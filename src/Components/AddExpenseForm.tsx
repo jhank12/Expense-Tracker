@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const AddExpenseForm = ({ addExpense, setExpenseFormOpen }) => {
+// components
+import Dialog from "./Reusable/Dialog/Dialog";
+
+const AddExpenseForm = ({ addExpense, dialogRef, setExpenseFormOpen }) => {
   const [expenseName, setExpenseName] = useState("");
   const [category, setCategory] = useState("subscription");
   const [amount, setAmount] = useState(0.0);
@@ -50,60 +53,66 @@ const AddExpenseForm = ({ addExpense, setExpenseFormOpen }) => {
   }
 
   return (
-    <div className="modalContainer expenseFormContainer">
-      <h2>Add New Expense</h2>
+    <Dialog dialogRef={dialogRef}>
+      <div className="modalContainer expenseFormContainer">
+        <h2>Add New Expense</h2>
 
-      <form action="" className="newExpenseForm flex-col" onSubmit={formSubmit}>
-        <div className="inputLabelWrap flex-col">
-          <label htmlFor="">Expense Name</label>
-          <input
-            type="text"
-            onChange={(e) => setExpenseName(e.target.value)}
-            ref={expenseNameRef}
-          />
-        </div>
+        <form
+          action=""
+          className="newExpenseForm flex-col"
+          onSubmit={formSubmit}
+        >
+          <div className="inputLabelWrap flex-col">
+            <label htmlFor="">Expense Name</label>
+            <input
+              type="text"
+              onChange={(e) => setExpenseName(e.target.value)}
+              ref={expenseNameRef}
+            />
+          </div>
 
-        <div className="inputLabelWrap flex-col">
-          <label htmlFor="">Category</label>
+          <div className="inputLabelWrap flex-col">
+            <label htmlFor="">Category</label>
 
-          <select
-            name=""
-            id=""
-            onChange={(e) => setCategory(e.target.value)}
-            ref={categoryRef}
-          >
-            <option value="subscription">Subscription</option>
-            <option value="food">Food</option>
-            <option value="bill">Bill</option>
-            <option value="misc">Misc</option>
-          </select>
-        </div>
+            <select
+              name=""
+              id=""
+              onChange={(e) => setCategory(e.target.value)}
+              ref={categoryRef}
+            >
+              <option value="subscription">Subscription</option>
+              <option value="food">Food</option>
+              <option value="bill">Bill</option>
+              <option value="misc">Misc</option>
+            </select>
+          </div>
 
-        {/* limit character amount */}
-        <div className="inputLabelWrap flex-col">
-          <label htmlFor="">Amount</label>
-          <input
-            type="text"
-            onChange={(e) => setAmount(Number(e.target.value))}
-            ref={amountRef}
-          />
-        </div>
+          {/* limit character amount */}
+          <div className="inputLabelWrap flex-col">
+            <label htmlFor="">Amount</label>
+            <input
+              type="text"
+              onChange={(e) => setAmount(Number(e.target.value))}
+              ref={amountRef}
+            />
+          </div>
 
-        <div className="inputLabelWrap flex-col">
-          <label htmlFor="">Type</label>
-          <input
-            type="text"
-            onChange={(e) => setExpenseType(e.target.value)}
-            ref={expenseTypeRef}
-          />
-        </div>
+          <div className="inputLabelWrap flex-col">
+            <label htmlFor="">Type</label>
+            <input
+              type="text"
+              onChange={(e) => setExpenseType(e.target.value)}
+              ref={expenseTypeRef}
+            />
+          </div>
 
-        <div className="btnsContainer">
-          <button className="btnMain">Add Expense</button>
-          <button type="reset">Reset</button>
-        </div>
-      </form>
-    </div>
+          <div className="btnsContainer">
+            <button className="btnMain">Add Expense</button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </Dialog>
   );
 };
 
