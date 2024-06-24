@@ -3,24 +3,27 @@ import React from "react";
 import styles from "./ExpenseOptions.module.css";
 
 const ExpenseOptions = ({
-  editExpense,
-  deleteExpense,
-
   editDialogRef,
   deleteDialogRef,
-  executeAction,
+  setExpenseOptionsOpen,
 }) => {
+  function openDialog(dialogRef) {
+    dialogRef.current?.showModal();
+
+    setExpenseOptionsOpen(false);
+  }
+
   return (
     <div className={styles.expenseOptions}>
       <div
         className={styles.expenseOption}
-        onClick={() => editDialogRef.current?.showModal()}
+        onClick={() => openDialog(editDialogRef)}
       >
         <p>Edit</p>
       </div>
       <div
         className={styles.expenseOption}
-        onClick={() => deleteDialogRef.current?.showModal()}
+        onClick={() => openDialog(deleteDialogRef)}
       >
         <p>Delete</p>
       </div>

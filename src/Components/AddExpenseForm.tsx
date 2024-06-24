@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const AddExpenseForm = ({ addExpense, setExpenseFormOpen }) => {
   const [expenseName, setExpenseName] = useState("");
@@ -11,6 +11,8 @@ const AddExpenseForm = ({ addExpense, setExpenseFormOpen }) => {
   const categoryRef = useRef(null);
   const amountRef = useRef(null);
   const expenseTypeRef = useRef(null);
+
+  useEffect(() => {}, []);
 
   function clearFormInputs(): void {
     expenseNameRef.current.value = "";
@@ -98,7 +100,7 @@ const AddExpenseForm = ({ addExpense, setExpenseFormOpen }) => {
 
         <div className="btnsContainer">
           <button className="btnMain">Add Expense</button>
-          <button type="reset">Clear Form</button>
+          <button type="reset">Reset</button>
         </div>
       </form>
     </div>

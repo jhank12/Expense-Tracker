@@ -1,4 +1,4 @@
-import React, { useState, useRef, useId } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 
 import DashboardSection from "../Reusable/DashboardSection/DashboardSection";
 import styles from "./ExpensesSection.module.css";
@@ -50,17 +50,12 @@ const ExpensesSection = () => {
   ]);
 
   const addExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
-  const editExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
-  const deleteExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
 
   function addExpense(expense: Expense) {
     setExpenses((prev) => [...prev, expense]);
 
     addExpenseDialogRef.current?.close();
   }
-
-  // expense option selection opens the corresponding dialog box.
-  // on click open dialog ref and pass in the edit or delete expense function to the modal
 
   function editExpense(expenseId: string, updatedExpense: Expense, dialogRef) {
     const expensesCopy = expenses;
@@ -73,9 +68,6 @@ const ExpensesSection = () => {
       }
     });
 
-    // const expense: Expense = expensesCopy[expenseIdx];
-
-    // expense.expenseName = "New name";
     expensesCopy[expenseIdx] = updatedExpense;
 
     setExpenses([...expensesCopy]);
@@ -92,6 +84,19 @@ const ExpensesSection = () => {
     dialogRef.current?.close();
   }
 
+  useEffect(() => {
+    addExpenseDialogRef.current?.addEventListener("click", function (e) {
+      if (e.target.className === "dialog") addExpenseDialogRef.current?.close();
+    });
+
+    return () => {
+      addExpenseDialogRef.current?.removeEventListener(
+        "click",
+        function (e) {}
+      );
+    };
+  }, []);
+
   return (
     <DashboardSection>
       <h2>Today's Expenses</h2>
@@ -103,8 +108,6 @@ const ExpensesSection = () => {
               expense={expense}
               editExpense={editExpense}
               deleteExpense={deleteExpense}
-              editDialogRef={editExpenseDialogRef}
-              deleteDialogRef={deleteExpenseDialogRef}
             />
           );
         })}
@@ -117,29 +120,6 @@ const ExpensesSection = () => {
           setExpenseFormOpen={setExpenseFormOpen}
         />
       </dialog>
-
-      {/* edit expense dialog */}
-
-      <dialog ref={editExpenseDialogRef}></dialog>
-
-      {/* delete expense dialog */}
-
-      {/* <dialog className="dialog" ref={deleteExpenseDialogRef}>
-        <div className="modalContainer">
-          <h2>Delete Expense</h2>
-
-          <p>This action is permanent and cannot be undone.</p>
-
-          <div>
-            <button className="btnMain" onClick={() => deleteExpense()}>
-              Delete Expense
-            </button>
-            <button onClick={() => closeDialog(deleteExpenseDialogRef)}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      </dialog> */}
 
       <div className={styles.newExpenseBtnContainer}>
         <button

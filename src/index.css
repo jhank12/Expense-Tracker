@@ -100,6 +100,8 @@ button {
   justify-content: space-between;
   padding: 1.5rem 1.65rem;
   max-width: 600px;
+  min-width: 450px;
+
   /* width: 40%; */
   width: 100%;
 }
@@ -152,4 +154,48 @@ form {
 
 .btnsContainer button[type="reset"]:hover {
   color: #a1a1a1;
+}
+
+/* delete expense dialog */
+
+.deleteExpenseDialog {
+  gap: 25px;
+}
+
+.deleteExpenseDialog p {
+  color: #c2c2c2;
+  font-weight: 500;
+}
+
+.deleteExpenseDialog .btnsContainerHorizontal {
+  margin-top: 40px;
+}
+
+.btnsContainerHorizontal {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.btnsContainerHorizontal button {
+  width: 100%;
+}
+
+.btnsContainerHorizontal button:first-of-type {
+  background-color: transparent;
+  border: 1.75px solid #7c7c7c;
+  border-radius: 10px;
+  color: #7c7c7c;
+  font-weight: 500;
+  height: 55px;
+}
+
+.btnsContainerHorizontal button:first-of-type:hover {
+  border-color: #a1a1a1;
+  color: #a1a1a1;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.15);
 }

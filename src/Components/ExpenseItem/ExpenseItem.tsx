@@ -1,16 +1,12 @@
 import React, { useState, useRef } from "react";
 import styles from "./ExpenseItem.module.css";
 
+// components
 import ExpenseOptions from "../ExpenseOptions/ExpenseOptions";
 import EditExpenseDialog from "../EditExpenseDialog/EditExpenseDialog";
+import DeleteExpenseDialog from "../DeleteExpenseDialog/DeleteExpenseDialog";
 
-const ExpenseItem = ({
-  expense,
-  editExpense,
-  deleteExpense,
-  // editDialogRef,
-  // deleteDialogRef,
-}) => {
+const ExpenseItem = ({ expense, editExpense, deleteExpense }) => {
   const { id, expenseName: name, category, amount, expenseType } = expense;
 
   const categoryCapitalized = category[0].toUpperCase() + category.slice(1);
@@ -54,35 +50,21 @@ const ExpenseItem = ({
           expense={expense}
           editExpense={editExpense}
           editExpenseDialogRef={editExpenseDialogRef}
+          closeDialog={closeDialog}
         />
 
-        <dialog className="dialog" ref={deleteExpenseDialogRef}>
-          <div className="modalContainer">
-            <h2>Delete Expense</h2>
-
-            <p>This action is permanent and cannot be undone.</p>
-
-            <div>
-              <button
-                className="btnMain"
-                onClick={() => deleteExpense(id, deleteExpenseDialogRef)}
-              >
-                Delete Expense
-              </button>
-              <button onClick={() => closeDialog(deleteExpenseDialogRef)}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        </dialog>
+        <DeleteExpenseDialog
+          expense={expense}
+          deleteExpense={deleteExpense}
+          deleteExpenseDialogRef={deleteExpenseDialogRef}
+          closeDialog={closeDialog}
+        />
 
         {expenseOptionsOpen && (
           <ExpenseOptions
-            editExpense={editExpense}
-            deleteExpense={deleteExpense}
-            executeAction={executeAction}
             editDialogRef={editExpenseDialogRef}
             deleteDialogRef={deleteExpenseDialogRef}
+            setExpenseOptionsOpen={setExpenseOptionsOpen}
           />
         )}
       </div>

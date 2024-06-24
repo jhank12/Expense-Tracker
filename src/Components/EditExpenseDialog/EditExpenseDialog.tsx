@@ -1,6 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-const EditExpenseDialog = ({ expense, editExpense, editExpenseDialogRef }) => {
+const EditExpenseDialog = ({
+  expense,
+  editExpense,
+  editExpenseDialogRef,
+  closeDialog,
+}) => {
   const { id, expenseName: name, category, amount, expenseType } = expense;
 
   //   const editExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
@@ -33,6 +38,21 @@ const EditExpenseDialog = ({ expense, editExpense, editExpenseDialogRef }) => {
     editExpense(id, updatedExpense, editExpenseDialogRef);
     //  editExpenseDialogRef.current?.close();
   }
+
+  function addDialogEventListener() {}
+
+  useEffect(() => {
+    editExpenseDialogRef.current?.addEventListener("click", function (e) {
+      if (e.target.className === "dialog") closeDialog(editExpenseDialogRef);
+    });
+
+    return () => {
+      editExpenseDialogRef.current?.removeEventListener(
+        "click",
+        function (e) {}
+      );
+    };
+  }, []);
 
   return (
     <dialog className="dialog" ref={editExpenseDialogRef}>
