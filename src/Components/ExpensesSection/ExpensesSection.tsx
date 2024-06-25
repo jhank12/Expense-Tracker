@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect, useId } from "react";
+import React, { useState, useRef, useEffect, useContext, useId } from "react";
 
 import DashboardSection from "../Reusable/DashboardSection/DashboardSection";
 import styles from "./ExpensesSection.module.css";
 import AddExpenseForm from "../AddExpenseForm";
 
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
+
+import { ExpensesContext } from "../../Context/ExpensesContext";
 
 type Expense = {
   id: string;
@@ -14,75 +16,16 @@ type Expense = {
   expenseType: string;
 };
 
-const ExpensesSection = () => {
+const ExpensesSection = ({
+  expenseOptionsOpen,
+  setExpenseOptionsOpen,
+  isOptionsOpenFunc,
+}) => {
   const [expenseFormOpen, setExpenseFormOpen] = useState(false);
 
-  const [expenses, setExpenses] = useState([
-    {
-      id: useId(),
-      expenseName: "Amazon",
-      category: "Subscription",
-      amount: 19.99,
-      expenseType: "deduct",
-    },
-
-    {
-      id: useId(),
-      expenseName: "Netflix",
-      category: "Subscription",
-      amount: 15.99,
-      expenseType: "deduct",
-    },
-    {
-      id: useId(),
-      expenseName: "Refund",
-      category: "Misc",
-      amount: 40.47,
-      expenseType: "add",
-    },
-    {
-      id: useId(),
-      expenseName: "Doordash",
-      category: "Food",
-      amount: 32.65,
-      expenseType: "deduct",
-    },
-  ]);
+  const { expenses } = useContext(ExpensesContext);
 
   const addExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
-
-  function addExpense(expense: Expense) {
-    setExpenses((prev) => [...prev, expense]);
-
-    addExpenseDialogRef.current?.close();
-  }
-
-  function editExpense(expenseId: string, updatedExpense: Expense, dialogRef) {
-    const expensesCopy = expenses;
-
-    let expenseIdx: number;
-
-    expensesCopy.forEach((expense) => {
-      if (expense.id == expenseId) {
-        expenseIdx = expenses.indexOf(expense);
-      }
-    });
-
-    expensesCopy[expenseIdx] = updatedExpense;
-
-    setExpenses([...expensesCopy]);
-    dialogRef.current?.close();
-  }
-
-  function deleteExpense(expenseId: string, dialogRef) {
-    const filteredExpenses = expenses.filter((expense) => {
-      return expense.id !== expenseId;
-    });
-
-    setExpenses([...filteredExpenses]);
-
-    dialogRef.current?.close();
-  }
 
   return (
     <DashboardSection>
@@ -93,15 +36,19 @@ const ExpensesSection = () => {
           return (
             <ExpenseItem
               expense={expense}
-              editExpense={editExpense}
-              deleteExpense={deleteExpense}
+              // editExpense={editExpense}
+              // deleteExpense={deleteExpense}
+              // for expense option click
+              // expenseOptionsOpen={expenseOptionsOpen}
+              // setExpenseOptionsOpen={setExpenseOptionsOpen}
+
+              isOptionsOpenFunc={isOptionsOpenFunc}
             />
           );
         })}
       </div>
 
       <AddExpenseForm
-        addExpense={addExpense}
         dialogRef={addExpenseDialogRef}
         setExpenseFormOpen={setExpenseFormOpen}
       />

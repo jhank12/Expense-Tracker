@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import styles from "./ExpenseOptions.module.css";
+import Dialog from "../Reusable/Dialog/Dialog";
 
 const ExpenseOptions = ({
   editDialogRef,
   deleteDialogRef,
   setExpenseOptionsOpen,
+  isOptionsOpenFunc,
+
+  expenseOptionsDialogRef,
 }) => {
   function openDialog(dialogRef) {
     dialogRef.current?.showModal();
 
     setExpenseOptionsOpen(false);
+    isOptionsOpenFunc(false);
   }
 
   return (
+    // <Dialog dialogRef={expenseOptionsDialogRef}>
     <div className={styles.expenseOptions}>
       <div
         className={styles.expenseOption}
@@ -28,6 +34,7 @@ const ExpenseOptions = ({
         <p>Delete</p>
       </div>
     </div>
+    // </Dialog>
   );
 };
 

@@ -55,6 +55,8 @@ button {
   border: none;
   border-radius: 15px;
   color: inherit !important;
+
+  /* position: relative; */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -198,4 +200,22 @@ form {
 
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* section cycle counter */
+
+.sectionHeader {
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sectionCounter {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
+
+.sectionCounter > * {
+  width: 50px;
 }

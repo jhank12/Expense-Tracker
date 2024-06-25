@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "./ExpenseItem.module.css";
 
 // components
@@ -6,24 +6,26 @@ import ExpenseOptions from "../ExpenseOptions/ExpenseOptions";
 import EditExpenseDialog from "../EditExpenseDialog/EditExpenseDialog";
 import DeleteExpenseDialog from "../DeleteExpenseDialog/DeleteExpenseDialog";
 
-const ExpenseItem = ({ expense, editExpense, deleteExpense }) => {
+import { ExpensesContext } from "../../Context/ExpensesContext";
+
+const ExpenseItem = ({
+  expense,
+
+  isOptionsOpenFunc,
+}) => {
   const { id, expenseName: name, category, amount, expenseType } = expense;
 
   const categoryCapitalized = category[0].toUpperCase() + category.slice(1);
 
   const [expenseOptionsOpen, setExpenseOptionsOpen] = useState(false);
 
+  const expenseOptionsRef = useRef<HTMLDialogElement>(null);
+
   const editExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
   const deleteExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
 
-  function executeAction(expenseActionFunc) {
-    expenseActionFunc(id);
-    setExpenseOptionsOpen(false);
-  }
-
-  function closeDialog(dialogRef) {
-    dialogRef.current?.close();
-  }
+  // context
+  const { editExpense, deleteExpense } = useContext(ExpensesContext);
 
   return (
     <div className={styles.expenseItem}>
@@ -31,7 +33,6 @@ const ExpenseItem = ({ expense, editExpense, deleteExpense }) => {
         <p className={styles.expenseName}>{name}</p>
         <p className={styles.expenseCategory}>{categoryCapitalized}</p>
       </div>
-      {/* use conditional styles with regular css not module */}
 
       <div className={styles.expenseRightSide}>
         {expenseType === "add" ? (
@@ -50,14 +51,12 @@ const ExpenseItem = ({ expense, editExpense, deleteExpense }) => {
           expense={expense}
           editExpense={editExpense}
           editExpenseDialogRef={editExpenseDialogRef}
-          closeDialog={closeDialog}
         />
 
         <DeleteExpenseDialog
           expense={expense}
           deleteExpense={deleteExpense}
           deleteExpenseDialogRef={deleteExpenseDialogRef}
-          closeDialog={closeDialog}
         />
 
         {expenseOptionsOpen && (
@@ -65,6 +64,8 @@ const ExpenseItem = ({ expense, editExpense, deleteExpense }) => {
             editDialogRef={editExpenseDialogRef}
             deleteDialogRef={deleteExpenseDialogRef}
             setExpenseOptionsOpen={setExpenseOptionsOpen}
+            isOptionsOpenFunc={isOptionsOpenFunc}
+            expenseOptionsDialogRef={expenseOptionsRef}
           />
         )}
       </div>

@@ -1,9 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 
 // components
 import Dialog from "./Reusable/Dialog/Dialog";
 
-const AddExpenseForm = ({ addExpense, dialogRef, setExpenseFormOpen }) => {
+// context
+import { ExpensesContext } from "../Context/ExpensesContext";
+
+const AddExpenseForm = ({ dialogRef, setExpenseFormOpen }) => {
   const [expenseName, setExpenseName] = useState("");
   const [category, setCategory] = useState("subscription");
   const [amount, setAmount] = useState(0.0);
@@ -15,7 +18,8 @@ const AddExpenseForm = ({ addExpense, dialogRef, setExpenseFormOpen }) => {
   const amountRef = useRef(null);
   const expenseTypeRef = useRef(null);
 
-  useEffect(() => {}, []);
+  // context
+  const { addExpense } = useContext(ExpensesContext);
 
   function clearFormInputs(): void {
     expenseNameRef.current.value = "";
@@ -45,7 +49,7 @@ const AddExpenseForm = ({ addExpense, dialogRef, setExpenseFormOpen }) => {
       amount > 0.0 &&
       expenseType !== ""
     ) {
-      addExpense(newExpense);
+      addExpense(newExpense, dialogRef);
       clearFormInputs();
     } else {
       alert("failed to add expense");
@@ -108,7 +112,9 @@ const AddExpenseForm = ({ addExpense, dialogRef, setExpenseFormOpen }) => {
 
           <div className="btnsContainer">
             <button className="btnMain">Add Expense</button>
-            <button type="reset">Reset</button>
+            <button type="reset" onClick={() => clearFormInputs()}>
+              Reset
+            </button>
           </div>
         </form>
       </div>

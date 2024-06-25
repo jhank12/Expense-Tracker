@@ -7,7 +7,6 @@ const DeleteExpenseDialog = ({
   expense,
   deleteExpense,
   deleteExpenseDialogRef,
-  closeDialog,
 }) => {
   //   useEffect(() => {
   //     deleteExpenseDialogRef.current?.addEventListener("click", function (e) {

@@ -3,12 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 // components
 import Dialog from "../Reusable/Dialog/Dialog";
 
-const EditExpenseDialog = ({
-  expense,
-  editExpense,
-  editExpenseDialogRef,
-  closeDialog,
-}) => {
+const EditExpenseDialog = ({ expense, editExpense, editExpenseDialogRef }) => {
   const { id, expenseName: name, category, amount, expenseType } = expense;
 
   //   const editExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
@@ -25,6 +20,19 @@ const EditExpenseDialog = ({
   const amountInputRef = useRef<HTMLInputElement>(null);
   const expenseTypeInputRef = useRef<HTMLInputElement>(null);
 
+  function clearFormInputs(): void {
+    expenseNameInputRef.current.value = "";
+    categoryInputRef.current.value = "subscription";
+    amountInputRef.current.value = "";
+    expenseTypeInputRef.current.value = "";
+
+    // for now reset the state but in future maybe keep defaults
+    setExpenseNameNew("");
+    setCategoryNew("subscription");
+    setAmountNew(0.0);
+    setExpenseTypeNew("");
+  }
+
   function formSubmit(e: Event) {
     e.preventDefault();
 
@@ -38,7 +46,12 @@ const EditExpenseDialog = ({
 
     //  do value checks to see if different
 
+    // for some reason when expense gets deleted, that data carries over to the edit form of different expense
+    // check for how expenses are accessed, reset forms and state for dialog when closed
+
     editExpense(id, updatedExpense, editExpenseDialogRef);
+
+    // clearFormInputs();
     //  editExpenseDialogRef.current?.close();
   }
 
@@ -100,7 +113,9 @@ const EditExpenseDialog = ({
             <button className="btnMain" type="submit">
               Update Expense
             </button>
-            <button type="reset">Clear Form</button>
+            <button type="reset" onClick={() => clearFormInputs()}>
+              Clear Form
+            </button>
           </div>
         </form>
       </div>
