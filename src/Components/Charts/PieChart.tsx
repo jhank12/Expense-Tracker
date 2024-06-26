@@ -28,15 +28,15 @@ const PieChartComponent = () => {
     misc: "#fa8072",
   };
 
-  const expenseCategories = getExpenseCategories().categories;
-  const expenseColors = getExpenseCategories().colors;
-  const expenseSums = getExpenseSums();
+  // const expenseCategories = getExpenseCategories().categories;
+  // const expenseColors = getExpenseCategories().colors;
+  // const expenseSums = getExpenseSums();
 
   // one object per category
   // {category, amount: expenseSums()}
-  const chartData = getCategoryData();
+  const chartData = getChartData();
 
-  function getCategoryData() {
+  function getChartData() {
     const expenseCategoriesArr: [string] = [];
 
     expenses.forEach((expense) => {
@@ -58,9 +58,8 @@ const PieChartComponent = () => {
       expenses.filter((expense) => {
         const { category: expenseCategory, amount } = expense;
 
-        if (expenseCategory === category) {
-          categorySum += amount;
-        }
+        // chain with reduce ()
+        if (expenseCategory === category) categorySum += amount;
       });
 
       const categoryObj = { category: category, amount: categorySum };
@@ -70,56 +69,6 @@ const PieChartComponent = () => {
     });
 
     return categoryObjs;
-  }
-
-  function capitalizeCategory(category: string): string {
-    return category[0].toUpperCase() + category.slice(1);
-  }
-
-  function getExpenseCategories() {
-    // const expenseCategories: [string] = [];
-
-    const expenseCategories: { categories: []; colors: [] } = {
-      categories: [],
-      colors: [],
-    };
-
-    const { categories, colors } = expenseCategories;
-
-    expenses.forEach((expense) => {
-      const { category, expenseType } = expense;
-
-      if (
-        expenseCategories.categories.indexOf(category) < 0 &&
-        expenseType !== "add"
-      ) {
-        categories.push(category);
-        colors.push(categoryColors[category]);
-      } else {
-        return;
-      }
-    });
-
-    return expenseCategories;
-  }
-
-  function getExpenseSums(): [number] {
-    const expenseSumsArr: [number] = [];
-
-    expenseCategories.forEach((category) => {
-      let categorySum: number = 0;
-
-      expenses.filter((expense) => {
-        const { category: expenseCategory, amount, expenseType } = expense;
-
-        if (expenseType !== "add" && expenseCategory === category) {
-          categorySum += amount;
-        }
-      });
-
-      expenseSumsArr.push(categorySum);
-    });
-    return expenseSumsArr;
   }
 
   // const testData = [
@@ -134,7 +83,6 @@ const PieChartComponent = () => {
 
   return (
     <div>
-      {JSON.stringify(chartData)}
       <PieChart width={730} height={450}>
         <Pie
           data={chartData}

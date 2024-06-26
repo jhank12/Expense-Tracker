@@ -11,26 +11,35 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  CartesianGrid,
+  CartesianAxis,
 } from "recharts";
 
 const BarChartComponent = () => {
   const testData = [
-    { name: "Mon", amount: 28 },
-    { name: "Tues", amount: 40 },
-    { name: "Wed", amount: 60 },
-    { name: "Thurs", amount: 30 },
-    { name: "Fri", amount: 40 },
-    { name: "Sat", amount: 120 },
-    { name: "Sun", amount: 60 },
+    { day: "Mon", dailySum: 28 },
+    { day: "Tues", dailySum: 40 },
+    { day: "Wed", dailySum: 60 },
+    { day: "Thurs", dailySum: 30 },
+    { day: "Fri", dailySum: 40 },
+    { day: "Sat", dailySum: 120 },
+    { day: "Sun", dailySum: 60 },
   ];
+
+  const date = new Date();
+
+  console.log(date.getDay());
+
+  // get dates for the entire week
+  // have similar function as pie chart but calculate all daily expenses regardless of category
 
   return (
     <div>
       {/* <ResponsiveContainer> */}
       <BarChart width={730} height={450} data={testData}>
         <Tooltip />
-        <Bar dataKey="amount" fill="#5e39c5" />
-        <XAxis dataKey="name" />
+        <Bar dataKey="dailySum" fill="#5e39c5" />
+        <XAxis dataKey="day" />
         <YAxis />
       </BarChart>
       {/* </ResponsiveContainer> */}

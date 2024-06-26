@@ -26,13 +26,6 @@ const Dashboard = ({
   setExpenseOptionsOpen,
   isOptionsOpenFunc,
 }) => {
-  // chart data = {labels:[], data:[]}
-
-  // const data = {
-  //   labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
-  //   datasets: [10, 20, 30, 40, 50, 60],
-  // };
-
   // need bar chart and pie/donut chart
 
   // bar chart is for daily averages of the week, pie chart will be for expense categories
@@ -45,42 +38,10 @@ const Dashboard = ({
   // Healthcare
   // Pet
 
-  // const [expenses, setExpenses] = useState([
-  //   {
-  //     id: useId(),
-  //     expenseName: "Amazon",
-  //     category: "Subscription",
-  //     amount: 19.99,
-  //     expenseType: "deduct",
-  //   },
-
-  //   {
-  //     id: useId(),
-  //     expenseName: "Netflix",
-  //     category: "Subscription",
-  //     amount: 15.99,
-  //     expenseType: "deduct",
-  //   },
-  //   {
-  //     id: useId(),
-  //     expenseName: "Refund",
-  //     category: "Misc",
-  //     amount: 400.47,
-  //     expenseType: "add",
-  //   },
-  //   {
-  //     id: useId(),
-  //     expenseName: "Doordash",
-  //     category: "Food",
-  //     amount: 32.65,
-  //     expenseType: "deduct",
-  //   },
-  // ]);
-
   // expenses context start
 
   // expenses context end
-  const [sectionCounter, setSectionCounter] = useState(1);
+  const [sectionCounter, setSectionCounter] = useState(0);
 
   // section items is what changes on counter change
   const sectionItems = [<BarChartComponent />, <PieChartComponent />];
