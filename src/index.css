@@ -219,3 +219,13 @@ dialog::backdrop {
 .sectionCounter > * {
   width: 50px;
 }
+
+.chartContainer {
+  width: 730px;
+  height: 100%;
+
+  color: #ff0000;
+  color: #0000ff;
+  color: #008000;
+  color: #fa8072;
+}

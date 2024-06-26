@@ -37,11 +37,12 @@ const ExpensesContextProvider = ({ children }) => {
 
   function addExpense(expense: Expense, dialogRef) {
     setExpenses((prev) => [...prev, expense]);
-
+    console.log(expenses);
     dialogRef.current?.close();
   }
 
   function editExpense(expenseId: string, updatedExpense: Expense, dialogRef) {
+    console.log(updatedExpense);
     const expensesCopy = expenses;
 
     let expenseIdx: number;
@@ -59,6 +60,7 @@ const ExpensesContextProvider = ({ children }) => {
   }
 
   function deleteExpense(expenseId: string, dialogRef) {
+    console.log(expenseId);
     const filteredExpenses = expenses.filter((expense) => {
       return expense.id !== expenseId;
     });

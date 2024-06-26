@@ -15,12 +15,11 @@ import ExpensesSection from "../../Components/ExpensesSection/ExpensesSection";
 
 import DashboardSection from "../../Components/Reusable/DashboardSection/DashboardSection";
 
-import BarChart from "../../Components/Charts/BarChart";
-import PieChart from "../../Components/Charts/PieChart";
-
 // export const ExpensesContext = createContext([]);
 
 import ExpensesContextProvider from "../../Context/ExpensesContext";
+import BarChartComponent from "../../Components/Charts/BarChart";
+import PieChartComponent from "../../Components/Charts/PieChart";
 
 const Dashboard = ({
   expenseOptionsOpen,
@@ -81,10 +80,10 @@ const Dashboard = ({
   // expenses context start
 
   // expenses context end
-  const [sectionCounter, setSectionCounter] = useState(0);
+  const [sectionCounter, setSectionCounter] = useState(1);
 
   // section items is what changes on counter change
-  const sectionItems = [<BarChart />, <PieChart />];
+  const sectionItems = [<BarChartComponent />, <PieChartComponent />];
 
   function incrementCount() {
     if (sectionCounter + 1 < sectionItems.length) {

@@ -20,6 +20,13 @@ const EditExpenseDialog = ({ expense, editExpense, editExpenseDialogRef }) => {
   const amountInputRef = useRef<HTMLInputElement>(null);
   const expenseTypeInputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    setExpenseNameNew(name);
+    setCategoryNew(category);
+    setAmountNew(amount);
+    setExpenseTypeNew(expenseType);
+  }, [expense]);
+
   function clearFormInputs(): void {
     expenseNameInputRef.current.value = "";
     categoryInputRef.current.value = "subscription";
@@ -51,7 +58,8 @@ const EditExpenseDialog = ({ expense, editExpense, editExpenseDialogRef }) => {
 
     editExpense(id, updatedExpense, editExpenseDialogRef);
 
-    // clearFormInputs();
+    // clear inputs in context
+    clearFormInputs();
     //  editExpenseDialogRef.current?.close();
   }
 

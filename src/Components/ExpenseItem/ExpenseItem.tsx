@@ -61,6 +61,7 @@ const ExpenseItem = ({
 
         {expenseOptionsOpen && (
           <ExpenseOptions
+            expense={expense}
             editDialogRef={editExpenseDialogRef}
             deleteDialogRef={deleteExpenseDialogRef}
             setExpenseOptionsOpen={setExpenseOptionsOpen}

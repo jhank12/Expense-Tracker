@@ -8,7 +8,7 @@ import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
 import { ExpensesContext } from "../../Context/ExpensesContext";
 
-type Expense = {
+export type Expense = {
   id: string;
   expenseName: string;
   category: string;

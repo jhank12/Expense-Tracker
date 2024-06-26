@@ -1,10 +1,13 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect, useContext, useId } from "react";
 
+import { v4 as uuidv4 } from "uuid";
 // components
 import Dialog from "./Reusable/Dialog/Dialog";
 
 // context
 import { ExpensesContext } from "../Context/ExpensesContext";
+
+import { Expense } from "./ExpensesSection/ExpensesSection";
 
 const AddExpenseForm = ({ dialogRef, setExpenseFormOpen }) => {
   const [expenseName, setExpenseName] = useState("");
@@ -21,6 +24,8 @@ const AddExpenseForm = ({ dialogRef, setExpenseFormOpen }) => {
   // context
   const { addExpense } = useContext(ExpensesContext);
 
+  const expenseId: string = useId();
+
   function clearFormInputs(): void {
     expenseNameRef.current.value = "";
     categoryRef.current.value = "subscription";
@@ -36,7 +41,15 @@ const AddExpenseForm = ({ dialogRef, setExpenseFormOpen }) => {
   function formSubmit(e: Event): void {
     e.preventDefault();
 
-    const newExpense = {
+    // date.getDate() gives month day ie 25th of month
+
+    const date = new Date();
+
+    // months are 0 indexed
+    const currentDate = `${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`;
+
+    const newExpense: Expense = {
+      id: uuidv4(),
       expenseName: expenseName,
       category: category,
       amount: amount,
@@ -52,7 +65,7 @@ const AddExpenseForm = ({ dialogRef, setExpenseFormOpen }) => {
       addExpense(newExpense, dialogRef);
       clearFormInputs();
     } else {
-      alert("failed to add expense");
+      // alert("failed to add expense");
     }
   }
 

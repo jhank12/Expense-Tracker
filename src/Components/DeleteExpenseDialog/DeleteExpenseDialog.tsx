@@ -8,19 +8,6 @@ const DeleteExpenseDialog = ({
   deleteExpense,
   deleteExpenseDialogRef,
 }) => {
-  //   useEffect(() => {
-  //     deleteExpenseDialogRef.current?.addEventListener("click", function (e) {
-  //       if (e.target.className === "dialog") closeDialog(deleteExpenseDialogRef);
-  //     });
-
-  //     return () => {
-  //       deleteExpenseDialogRef.current?.removeEventListener(
-  //         "click",
-  //         function (e) {}
-  //       );
-  //     };
-  //   }, []);
-
   return (
     <Dialog dialogRef={deleteExpenseDialogRef}>
       <div className="modalContainer deleteExpenseDialog">
