@@ -37,6 +37,9 @@ select {
   border: none;
   border-radius: 15px;
   color: #c2c2c2;
+
+  cursor: pointer;
+
   font: inherit;
   font-size: 1.1rem;
   height: 55px;
@@ -228,4 +231,15 @@ dialog::backdrop {
   color: #0000ff;
   color: #008000;
   color: #fa8072;
+}
+
+/* bar chart start */
+
+.barChartHeader {
+  align-items: center;
+  justify-content: space-between;
+}
+
+#barChartSelect {
+  width: 14%;
 }
