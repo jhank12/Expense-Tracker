@@ -4,7 +4,14 @@ import React, { useState, useRef, useEffect } from "react";
 import Dialog from "../Reusable/Dialog/Dialog";
 
 const EditExpenseDialog = ({ expense, editExpense, editExpenseDialogRef }) => {
-  const { id, expenseName: name, category, amount, expenseType } = expense;
+  const {
+    id,
+    expenseName: name,
+    category,
+    amount,
+    expenseType,
+    date,
+  } = expense;
 
   //   const editExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -49,6 +56,7 @@ const EditExpenseDialog = ({ expense, editExpense, editExpenseDialogRef }) => {
       category: categoryNew,
       amount: amountNew,
       expenseType: expenseTypeNew,
+      date: date,
     };
 
     //  do value checks to see if different
