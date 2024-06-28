@@ -8,18 +8,16 @@ import DeleteExpenseDialog from "../DeleteExpenseDialog/DeleteExpenseDialog";
 
 import { ExpensesContext } from "../../Context/ExpensesContext";
 
-const ExpenseItem = ({
-  expense,
+// types
 
-  isOptionsOpenFunc,
-}) => {
+import { Expense } from "../ExpensesSection/ExpensesSection";
+
+const ExpenseItem = ({ expense }) => {
   const { id, expenseName: name, category, amount, expenseType } = expense;
 
   const categoryCapitalized = category[0].toUpperCase() + category.slice(1);
 
   const [expenseOptionsOpen, setExpenseOptionsOpen] = useState(false);
-
-  const expenseOptionsRef = useRef<HTMLDialogElement>(null);
 
   const editExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
   const deleteExpenseDialogRef = useRef<HTMLDialogElement | null>(null);
@@ -61,12 +59,9 @@ const ExpenseItem = ({
 
         {expenseOptionsOpen && (
           <ExpenseOptions
-            expense={expense}
             editDialogRef={editExpenseDialogRef}
             deleteDialogRef={deleteExpenseDialogRef}
             setExpenseOptionsOpen={setExpenseOptionsOpen}
-            isOptionsOpenFunc={isOptionsOpenFunc}
-            expenseOptionsDialogRef={expenseOptionsRef}
           />
         )}
       </div>

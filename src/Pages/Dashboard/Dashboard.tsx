@@ -65,13 +65,7 @@ const Dashboard = ({
   return (
     <ExpensesContextProvider>
       <section className={styles.dashboardContainer}>
-        <ExpensesSection
-          // for expense option click
-          // expenseOptionsOpen={expenseOptionsOpen}
-          // setExpenseOptionsOpen={setExpenseOptionsOpen}
-
-          isOptionsOpenFunc={isOptionsOpenFunc}
-        />
+        <ExpensesSection isOptionsOpenFunc={isOptionsOpenFunc} />
 
         <DashboardSection>
           <header className="sectionHeader flex-row">

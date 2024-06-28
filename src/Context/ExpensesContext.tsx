@@ -2,6 +2,8 @@ import { useState, useContext, createContext, useId } from "react";
 
 export const ExpensesContext = createContext(null);
 
+import { Expense } from "../Components/ExpensesSection/ExpensesSection";
+
 const ExpensesContextProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([
     {
@@ -10,6 +12,8 @@ const ExpensesContextProvider = ({ children }) => {
       category: "subscription",
       amount: 19.99,
       expenseType: "deduct",
+      // date month is one less than actual. 4 = may
+      date: "4-29-2024",
     },
 
     {
@@ -18,6 +22,7 @@ const ExpensesContextProvider = ({ children }) => {
       category: "subscription",
       amount: 15.99,
       expenseType: "deduct",
+      date: "4-29-2024",
     },
     {
       id: useId(),
@@ -25,6 +30,7 @@ const ExpensesContextProvider = ({ children }) => {
       category: "misc",
       amount: 400.47,
       expenseType: "add",
+      date: "4-30-2024",
     },
     {
       id: useId(),
@@ -32,8 +38,11 @@ const ExpensesContextProvider = ({ children }) => {
       category: "food",
       amount: 32.65,
       expenseType: "deduct",
+      date: "5-26-2024",
     },
   ]);
+
+  // add dates to expenses
 
   function addExpense(expense: Expense, dialogRef) {
     setExpenses((prev) => [...prev, expense]);
@@ -61,6 +70,7 @@ const ExpensesContextProvider = ({ children }) => {
 
   function deleteExpense(expenseId: string, dialogRef) {
     console.log(expenseId);
+
     const filteredExpenses = expenses.filter((expense) => {
       return expense.id !== expenseId;
     });

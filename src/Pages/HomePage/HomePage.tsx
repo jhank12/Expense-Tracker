@@ -40,6 +40,26 @@ const HomePage = () => {
     setOptionsOpen(expenseOptionsOpen);
   }
 
+  const monthsArr = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const date = new Date();
+  const month = monthsArr[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+
   return (
     <section className={styles.mainContainer} ref={homePageRef}>
       {navOpen && <Navbar />}
@@ -47,17 +67,14 @@ const HomePage = () => {
       <main>
         {/* <button onClick={() => setNavOpen(!navOpen)}>nav toggle</button> */}
 
+        {/* <h1>
+          Today is {month} {day} {year}
+        </h1> */}
+
         <Routes>
           <Route
             path="/dashboard"
-            element={
-              <Dashboard
-                isOptionsOpenFunc={isExpenseOptionsOpen}
-                // for expense option click
-                // expenseOptionsOpen={expenseOptionsOpen}
-                // setExpenseOptionsOpen={setExpenseOptionsOpen}
-              />
-            }
+            element={<Dashboard isOptionsOpenFunc={isExpenseOptionsOpen} />}
           />
           <Route path="/settings" element={<Settings />} />
         </Routes>

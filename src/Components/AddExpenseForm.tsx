@@ -46,14 +46,15 @@ const AddExpenseForm = ({ dialogRef, setExpenseFormOpen }) => {
     const date = new Date();
 
     // months are 0 indexed
-    const currentDate = `${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`;
-
+    const currentDate = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
+    console.log(currentDate);
     const newExpense: Expense = {
       id: uuidv4(),
       expenseName: expenseName,
       category: category,
       amount: amount,
       expenseType: expenseType,
+      date: currentDate,
     };
 
     if (
